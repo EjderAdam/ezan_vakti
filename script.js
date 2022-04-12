@@ -34,7 +34,8 @@ function checkCookie() {
 
 function getData(locationCode) {
     let url = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
-    fetch(url)
+    let testUrl = "https://thunderous-nasturtium-cbcfe9.netlify.app/test.json"
+    fetch(testUrl)
         .then(response => {
             return response.json();
         })
