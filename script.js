@@ -13,26 +13,35 @@ async function renderData() {
     let days = await getData2(9716);
     let html = '';
     days.forEach(day => {
-        let htmlSegment = `<div class="day">
-        <h2>${day.Aksam}</h2>
-        <h2>${day.Gunes}</h2>
-        <h2>${day.GunesBatis}</h2>
-        <h2>${day.GunesDogus}</h2>
-        <h2>${day.HicriTarihKisa}</h2>
-        <h2>${day.HicriTarihUzun}</h2>
-        <h2>${day.Ikindi}</h2>
-        <h2>${day.Imsak}</h2>
-        <h2>${day.KibleSaati}</h2>
-        <h2>${day.Ogle}</h2>
-        <h2>${day.MiladiTarihKisaIso8601}</h2>
-        <h2>${day.Yatsi}</h2>
-        </div>`;
+        let htmlSegment = `
+            <tr>
+                <td>${day.MiladiTarihKisaIso8601}</td>
+                <td>${day.Imsak}</td>
+                <td>${day.GunesDogus}</td>
+                <td>${day.Ogle}</td>
+                <td>${day.Ikindi}</td>
+                <td>${day.Aksam}</td>
+                <td>${day.Yatsi}</td>
+            </tr>
+            `;
 
         html += htmlSegment;
     });
-
+    htmlTemplateStart = `
+    <table>
+        <tr>
+        <td></td>
+        <td>İmsak</td>
+        <td>Güneş</td>
+        <td>Öğle</td>
+        <td>İkindi</td>
+        <td>Akşam</td>
+        <td>Yatsı</td>
+        </tr>
+    `
+    htmlTemplateEnd = `</table>`
     let container = document.querySelector('.container');
-    container.innerHTML = html;
+    container.innerHTML = htmlTemplateStart+html+htmlTemplateEnd;
 }
 
 renderData();
