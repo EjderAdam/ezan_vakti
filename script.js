@@ -1,52 +1,40 @@
-function setCookie(cname, cvalue, exdays, directory) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"+directory+"/";
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookie() {
-    let user = getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
-    }
-}
-
-function getData(locationCode) {
+async function getData2(locationCode) {
     let url = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
-    let testUrl = "https://thunderous-nasturtium-cbcfe9.netlify.app/test.json"
-    fetch(testUrl)
-        .then(response => {
-            return response.json();
-        })
-        .then(jsondata => console.log(jsondata));
-
-}
-
-function reload(locationCode) {
-    let list = getData(locationCode)
-    for (let i = 0; i < list.length; i++) {
-        console.log(list[i]) ;
+    let url2 = "https://www.javascripttutorial.net/sample/api/fetch/users.json"
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
     }
-
 }
+
+
+async function renderData() {
+    let days = await getData2(9716);
+    let html = '';
+    days.forEach(day => {
+        let htmlSegment = `<div class="day">
+        <h2>${day.Aksam}</h2>
+        <h2>${day.AyinSekliURL}</h2>
+        <h2>${day.Gunes}</h2>
+        <h2>${day.GunesBatis}</h2>
+        <h2>${day.GunesDogus}</h2>
+        <h2>${day.HicriTarihKisa}</h2>
+        <h2>${day.HicriTarihUzun}</h2>
+        <h2>${day.Ikindi}</h2>
+        <h2>${day.Imsak}</h2>
+        <h2>${day.KibleSaati}</h2>
+        <h2>${day.Ogle}</h2>
+        <h2>${day.MiladiTarihKisaIso8601}</h2>
+        <h2>${day.Yatsi}</h2>
+        </div>`;
+
+        html += htmlSegment;
+    });
+
+    let container = document.querySelector('.container');
+    container.innerHTML = html;
+}
+
+renderData();
