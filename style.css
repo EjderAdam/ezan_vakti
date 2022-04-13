@@ -1,26 +1,27 @@
-h1,h2 {
-    border-style: solid;
+h1,
+h2 {
+    border-radius: 15px;
     border-width: 5px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border-color: brown;
     text-align: center;
     color: aquamarine;
-    background-color: silver;
+    background-color: rgba(226, 19, 19, 0.411);
 }
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
+    font-family:'Courier New', Courier, monospace
+    border-radius: 10px;
     width: 100%;
 }
 
 td,
 th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #f5d7d7;
 }
