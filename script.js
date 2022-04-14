@@ -16,8 +16,7 @@ function isDateToday(date) {
 
 async function getData2(locationCode) {
 
-    let url1 = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
-    let url = "apiData.json"
+    let url = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
     try {
         let res = await fetch(url);
         return await res.json();
@@ -66,8 +65,8 @@ async function renderData() {
         </tr>
     `
     htmlTemplateEnd = `</table>`
-    let container = document.querySelector('.container');
-    container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
+    let container = document.querySelector('.aylıkTablo');
+    container.innerHTML = htmlTemplateStart+html+htmlTemplateEnd;
 }
 
 renderData();
