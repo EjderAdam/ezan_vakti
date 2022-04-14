@@ -1,5 +1,5 @@
 async function getData2(locationCode) {
-    let url = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
+    let url = "9716.json"
     try {
         let res = await fetch(url);
         return await res.json();
