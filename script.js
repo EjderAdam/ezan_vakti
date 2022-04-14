@@ -1,7 +1,3 @@
-const todayDate = new Date();
-console.log(todayDate)
-
-
 function isDateToday(date) {
     const otherDate = new Date(date);
     console.log(otherDate)
