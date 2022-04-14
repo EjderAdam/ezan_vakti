@@ -40,7 +40,7 @@ async function renderData() {
         </tr>
     `
     htmlTemplateEnd = `</table>`
-    let container = document.querySelector('.container');
+    let container = document.querySelector('.aylıkTablo');
     container.innerHTML = htmlTemplateStart+html+htmlTemplateEnd;
 }
 
