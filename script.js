@@ -1,6 +1,6 @@
 function isDateToday(date) {
     const otherDate = new Date(date);
-    console.log(otherDate)
+    const todayDate = new Date();
 
     if (
         otherDate.getDate() === todayDate.getDate() &&
@@ -16,7 +16,7 @@ function isDateToday(date) {
 
 async function getData2(locationCode) {
 
-    let url = "api.Data.json" + locationCode
+    let url = "apiData.json" // Test json url i
     try {
         let res = await fetch(url);
         return await res.json();
@@ -65,7 +65,7 @@ async function renderData() {
         </tr>
     `
     htmlTemplateEnd = `</table>`
-    let container = document.querySelector('.aylıkTablo');
+    let container = document.querySelector('.aylikTablo');
     container.innerHTML = htmlTemplateStart+html+htmlTemplateEnd;
 }
 
