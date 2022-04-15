@@ -8,11 +8,10 @@
     <title>Namaz Vakitleri</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .aylıkTablo {
+        .aylikTablo {
             margin: auto;
-            padding-top: 10px;
+            padding-top: 0px;
             max-width: 670px;
-
         }
 
         td {
@@ -27,58 +26,64 @@
             width: 100%;
         }
 
-        tr:nth-child(even) {
+        .tr:nth-child(even) {
             background-color: rgba(76, 149, 108, 0.555);
+        }
+        .bugun {
+            background-color: rgba(175, 29, 24, 0.555);
         }
         p {
             font-family: 'Courier New', monospace;
         }
-        
     </style>
 </head>
 
 <body class="bg1">
-    <header class="header1">
-        Namaz Vakitleri
+
     </header>
-    <div class="aylikTablo"></div>
+
     <script src="script.js"></script>
     <input type="checkbox" id="menu-toggle">
 
-<div class="container">
-    <div class="header">
-        <label class="hamburger-menu" for="menu-toggle">
-            <span></span>
-        </label>
-        <a href="#" class="logo">
-            <img class="headerimg" src="logo.png" width="60" height" />
-        
-        </a>
-        <div class="actions">
-            
+
+    <div class="container">
+        <div class="header">
+            <label class="hamburger-menu" for="menu-toggle">
+                <span></span>
+            </label>
+            <a href="#" class="logo"> BizimSite.com
+
+            </a>
+            <div class="actions">
+
+            </div>
+            <label for="menu-toggle" class="backdrop"></label>
         </div>
-        <label for="menu-toggle" class="backdrop"></label>
     </div>
-</div>
-<nav class="menu">
-    <ul>
-        <li>
-            <a href="#">Anasayfa</a>
-        </li>
-        <li>
-            <a href="#">Hakkımızda</a>
-        </li>
-        <li>
-            <a href="#">Dick</a>
-        </li>
-        <li>
-            <a href="#">Cock</a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com">İletişim</a>
-        </li>
-    </ul>
-</nav>
+    <nav class="menu">
+        <ul>
+            <li>
+                <a href="#">Anasayfa</a>
+            </li>
+            <li>
+                <a href="#">Hakkımızda</a>
+            </li>
+            <li>
+                <a href="#">Çok Yakında</a>
+            </li>
+            <li>
+                <a href="#">Çok Yakında</a>
+            </li>
+            <li>
+                <a href=" https://sitenin.adi.com/htmlDosyaismi.html">İletişim</a>
+            </li>
+        </ul>
+    </nav>
+    <p class="headerinAltindakiyazi">
+        Namaz Vakitleri
+
+    </p>
+    <div class="aylikTablo"></div>
     <footer>
         <p>Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>

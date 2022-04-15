@@ -34,12 +34,14 @@ async function renderData() {
         let otherDate = new Date(day.MiladiTarihUzunIso8601);
         if (isDateToday(otherDate)) {
             tarih = 'Bugun'
+            satirClass ='<tr class="bugun">'
         } else {
+            satirClass ='<tr class="tr">'
             tarih = day.MiladiTarihKisaIso8601
         }
 
         let htmlSegment = `
-            <tr>
+            ${satirClass}
                 <td>${tarih}</td>
                 <td>${day.Imsak}</td>
                 <td>${day.GunesDogus}</td>
