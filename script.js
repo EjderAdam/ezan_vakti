@@ -16,7 +16,7 @@ function isDateToday(date) {
 
 async function getData2(locationCode) {
 
-    let url = "https://ezanvakti.herokuapp.com/vakitler/" + locationCode
+    let url = "api.Data.json" + locationCode
     try {
         let res = await fetch(url);
         return await res.json();
