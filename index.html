@@ -8,41 +8,34 @@
     <title>Namaz Vakitleri</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .aylikTablo {
+        table {
             margin: auto;
-            padding-top: 0px;
+            padding-top: 10px;
+            margin-top: 50px;
+            max-width: 100%;
             max-width: 670px;
+
         }
 
         td {
             border-radius: 7px;
             text-align: center;
-            padding: 3px;
+            padding: 20px;
         }
 
         table {
             font-family: 'Courier New', Courier, monospace;
             border-radius: 10px;
-            width: 100%;
+            width: 50%;
         }
 
-        .tr:nth-child(even) {
+        .grbg {
             background-color: rgba(76, 149, 108, 0.555);
-        }
-
-        .bugun {
-            background-color: rgba(175, 29, 24, 0.555);
-        }
-
-        p {
-            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 
 <body class="bg1" onload="renderData()">
-    </header>
-    <script src="script.js"></script>
     <input type="checkbox" id="menu-toggle">
     <div class="container">
         <div class="header">
@@ -62,7 +55,7 @@
                 <a href="https://ezanvakti.netlify.app/">Anasayfa</a>
             </li>
             <li>
-                <a href="https://ezanvakti.netlify.app/bugun.html">Bugün</a>
+                <a href="https://ezanvakti.netlify.app/aylik.html">Aylık Namaz Vakitleri</a>
             </li>
             <li>
                 <a href="#">Çok Yakında</a>
@@ -75,54 +68,83 @@
             </li>
         </ul>
     </nav>
-    <p class="headerinAltindakiyazi">
-        Namaz Vakitleri
-    </p>
-    <div class="aylikTablo"></div>
+
+
+    <header class="headerinAltindakiyazi">
+        Günlük Namaz Vakitleri
+    </header>
+    <div class="aylık">
+        <table>
+            <tr>
+                <td class="grbg">İmsak</td>
+                <td class="grbg" id="imsak">00:00</td>
+            </tr>
+            <tr>
+                <td>Güneş</td>
+                <td id="gunes">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Öğle</td>
+                <td class="grbg" id="ogle">00:00</td>
+            </tr>
+            <tr>
+                <td>İkindi</td>
+                <td id="ikindi">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Akşam</td>
+                <td class="grbg" id="aksam">00:00</td>
+            </tr>
+            <tr>
+                <td>Yatsı</td>
+                <td id="yatsi">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Kalan</td>
+                <td class="grbg" id="kalan">00:00</td>
+            </tr>
+        </table>
+    </div>
     <footer>
         <p>Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
-    <script>async function renderData() {
+    <script src="script.js"></script>
+    <script>
+        async function renderData() {
             let days = await getData2(9716);
-            let html = '';
             let tarih = '';
             days.forEach(day => {
                 let otherDate = new Date(day.MiladiTarihUzunIso8601);
                 if (isDateToday(otherDate)) {
-                    tarih = 'Bugun'
-                    satirClass = '<tr class="bugun">'
-                } else {
-                    satirClass = '<tr class="tr">'
-                    tarih = day.MiladiTarihKisaIso8601
+                    document.getElementById("imsak").innerHTML = day.Imsak
+                    document.getElementById("gunes").innerHTML = day.GunesDogus
+                    document.getElementById("ogle").innerHTML = day.Ogle
+                    document.getElementById("ikindi").innerHTML = day.Ikindi
+                    document.getElementById("aksam").innerHTML = day.Aksam
+                    document.getElementById("yatsi").innerHTML = day.Yatsi
                 }
-                let htmlSegment = `
-            ${satirClass}
-                <td>${tarih}</td>
-                <td>${day.Imsak}</td>
-                <td>${day.GunesDogus}</td>
-                <td>${day.Ogle}</td>
-                <td>${day.Ikindi}</td>
-                <td>${day.Aksam}</td>
-                <td>${day.Yatsi}</td>
-            </tr>
-            `;
-                html += htmlSegment;
+                var countDownDate = new Date("19:54").getTime();
+
+                // Update the count down every 1 second
+                var x = setInterval(function () {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Output the result in an element with id="demo"
+                    document.getElementById("kalan").innerHTML = hours + ":"
+                        + minutes + ":" + seconds;
+                }, 1000);
+
             });
-            htmlTemplateStart = `
-                <table>
-                    <tr>
-                    <td></td>
-                    <td>İmsak</td>
-                    <td>Güneş</td>
-                    <td>Öğle</td>
-                    <td>İkindi</td>
-                    <td>Akşam</td>
-                    <td>Yatsı</td>
-                    </tr>
-                `
-            htmlTemplateEnd = `</table>`
-            let container = document.querySelector('.aylikTablo');
-            container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
         }
     </script>
 </body>
