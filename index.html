@@ -29,33 +29,29 @@
         .tr:nth-child(even) {
             background-color: rgba(76, 149, 108, 0.555);
         }
+
         .bugun {
             background-color: rgba(175, 29, 24, 0.555);
         }
+
         p {
             font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 
-<body class="bg1">
-
+<body class="bg1" onload="renderData()">
     </header>
-
     <script src="script.js"></script>
     <input type="checkbox" id="menu-toggle">
-
-
     <div class="container">
         <div class="header">
             <label class="hamburger-menu" for="menu-toggle">
                 <span></span>
             </label>
             <a href="https://ezanvakti.netlify.app/" class="logo"> BizimSite.com
-
             </a>
             <div class="actions">
-
             </div>
             <label for="menu-toggle" class="backdrop"></label>
         </div>
@@ -66,13 +62,13 @@
                 <a href="https://ezanvakti.netlify.app/">Anasayfa</a>
             </li>
             <li>
+                <a href="https://ezanvakti.netlify.app/bugun.html">Bugün</a>
+            </li>
+            <li>
+                <a href="#">Çok Yakında</a>
+            </li>
+            <li>
                 <a href="#">Hakkımızda</a>
-            </li>
-            <li>
-                <a href="#">Çok Yakında</a>
-            </li>
-            <li>
-                <a href="#">Çok Yakında</a>
             </li>
             <li>
                 <a href="#">İletişim</a>
@@ -81,12 +77,54 @@
     </nav>
     <p class="headerinAltindakiyazi">
         Namaz Vakitleri
-
     </p>
     <div class="aylikTablo"></div>
     <footer>
         <p>Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
+    <script>async function renderData() {
+            let days = await getData2(9716);
+            let html = '';
+            let tarih = '';
+            days.forEach(day => {
+                let otherDate = new Date(day.MiladiTarihUzunIso8601);
+                if (isDateToday(otherDate)) {
+                    tarih = 'Bugun'
+                    satirClass = '<tr class="bugun">'
+                } else {
+                    satirClass = '<tr class="tr">'
+                    tarih = day.MiladiTarihKisaIso8601
+                }
+                let htmlSegment = `
+            ${satirClass}
+                <td>${tarih}</td>
+                <td>${day.Imsak}</td>
+                <td>${day.GunesDogus}</td>
+                <td>${day.Ogle}</td>
+                <td>${day.Ikindi}</td>
+                <td>${day.Aksam}</td>
+                <td>${day.Yatsi}</td>
+            </tr>
+            `;
+                html += htmlSegment;
+            });
+            htmlTemplateStart = `
+                <table>
+                    <tr>
+                    <td></td>
+                    <td>İmsak</td>
+                    <td>Güneş</td>
+                    <td>Öğle</td>
+                    <td>İkindi</td>
+                    <td>Akşam</td>
+                    <td>Yatsı</td>
+                    </tr>
+                `
+            htmlTemplateEnd = `</table>`
+            let container = document.querySelector('.aylikTablo');
+            container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
+        }
+    </script>
 </body>
 
 </html>
