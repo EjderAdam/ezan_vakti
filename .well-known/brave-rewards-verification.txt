@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: ezanvakti.netlify.app
+Token: ed05fbc9eb2d5fccba853dd54ab1546c7e76b6a79aa3910e37e4c6699ff8b9a3
