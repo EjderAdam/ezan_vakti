@@ -7,59 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Namaz Vakitleri</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="sehirler.js">
     <style>
-        .aylikTablo {
+        table {
             margin: auto;
-            padding-top: 0px;
+            padding-top: 10px;
+            margin-top: 50px;
+            max-width: 100%;
             max-width: 670px;
+
         }
 
         td {
             border-radius: 7px;
             text-align: center;
-            padding: 3px;
+            padding: 20px;
         }
 
         table {
             font-family: 'Courier New', Courier, monospace;
             border-radius: 10px;
-            width: 100%;
+            width: 50%;
         }
 
-        .tr:nth-child(even) {
+        .grbg {
             background-color: rgba(76, 149, 108, 0.555);
-        }
-
-        .bugun {
-            background-color: rgba(175, 29, 24, 0.555);
-        }
-
-        p {
-            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 
-<body class="bg1">
-
-    </header>
-
-    <script src="script.js"></script>
-    <script src="sehirler.js"></script>
+<body class="bg1" onload="renderData()">
     <input type="checkbox" id="menu-toggle">
-
-
     <div class="container">
         <div class="header">
             <label class="hamburger-menu" for="menu-toggle">
                 <span></span>
             </label>
             <a href="https://ezanvakti.netlify.app/" class="logo"> BizimSite.com
-
             </a>
             <div class="actions">
-
             </div>
             <label for="menu-toggle" class="backdrop"></label>
         </div>
@@ -70,40 +55,98 @@
                 <a href="https://ezanvakti.netlify.app/">Anasayfa</a>
             </li>
             <li>
+                <a href="https://ezanvakti.netlify.app/aylik.html">Aylık Namaz Vakitleri</a>
+            </li>
+            <li>
+                <a href="#">Çok Yakında</a>
+            </li>
+            <li>
                 <a href="#">Hakkımızda</a>
-            </li>
-            <li>
-                <a href="#">Çok Yakında</a>
-            </li>
-            <li>
-                <a href="#">Çok Yakında</a>
             </li>
             <li>
                 <a href="#">İletişim</a>
             </li>
         </ul>
     </nav>
-    <p class="headerinAltindakiyazi">
-        Namaz Vakitleri
 
-    </p>
 
-    <div class="aylikTablo"></div>
-    <div id="footer">
-        <ul id="footer">
-            <li id="footer"><a id="footer" href="https://twitter.com/julesforrest">Twitter</a></li>
-            <li id="footer"><a id="footer" href="https://codepen.io/julesforrest">Codepen</a></li>
-            <li id="footer"><a id="footer" href="mailto:julesforrest@gmail.com">Email</a></li>
-            <li id="footer"><a id="footer" href="https://dribbble.com/julesforrest">Dribbble</a></li>
-            <li id="footer"><a id="footer" href="https://github.com/julesforrest">Github</a></li>
-            <li id="footer">
-                <p>👋</p>
-            </li>
-        </ul>
+    <header class="headerinAltindakiyazi">
+        Günlük Namaz Vakitleri
+    </header>
+    <div class="aylık">
+        <table>
+            <tr>
+                <td class="grbg">İmsak</td>
+                <td class="grbg" id="imsak">00:00</td>
+            </tr>
+            <tr>
+                <td>Güneş</td>
+                <td id="gunes">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Öğle</td>
+                <td class="grbg" id="ogle">00:00</td>
+            </tr>
+            <tr>
+                <td>İkindi</td>
+                <td id="ikindi">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Akşam</td>
+                <td class="grbg" id="aksam">00:00</td>
+            </tr>
+            <tr>
+                <td>Yatsı</td>
+                <td id="yatsi">00:00</td>
+            </tr>
+            <tr>
+                <td class="grbg">Kalan</td>
+                <td class="grbg" id="kalan">00:00</td>
+            </tr>
+        </table>
     </div>
     <footer>
         <p>Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
+    <script src="script.js"></script>
+    <script>
+        async function renderData() {
+            let days = await getData2(9716);
+            let tarih = '';
+            days.forEach(day => {
+                let otherDate = new Date(day.MiladiTarihUzunIso8601);
+                if (isDateToday(otherDate)) {
+                    document.getElementById("imsak").innerHTML = day.Imsak
+                    document.getElementById("gunes").innerHTML = day.GunesDogus
+                    document.getElementById("ogle").innerHTML = day.Ogle
+                    document.getElementById("ikindi").innerHTML = day.Ikindi
+                    document.getElementById("aksam").innerHTML = day.Aksam
+                    document.getElementById("yatsi").innerHTML = day.Yatsi
+                }
+                var countDownDate = new Date("19:54").getTime();
+
+                // Update the count down every 1 second
+                var x = setInterval(function () {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Output the result in an element with id="demo"
+                    document.getElementById("kalan").innerHTML = hours + ":"
+                        + minutes + ":" + seconds;
+                }, 1000);
+
+            });
+        }
+    </script>
 </body>
 
 </html>
