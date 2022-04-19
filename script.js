@@ -13,7 +13,12 @@ function isDateToday(date) {
     }
 }
 
-
+function strToDate(str) {
+    var now = new Date()
+    now1 = now.setHours(str.substring(0, 2))
+    now2 = now.setMinutes(str.substring(3, 5))
+    return now2
+}
 async function getData2(locationCode) {
 
     let url = "apiData.json" // Test json url i
@@ -26,49 +31,3 @@ async function getData2(locationCode) {
 }
 
 
-async function renderData() {
-    let days = await getData2(9716);
-    let html = '';
-    let tarih = '';
-    days.forEach(day => {
-        let otherDate = new Date(day.MiladiTarihUzunIso8601);
-        if (isDateToday(otherDate)) {
-            tarih = 'Bugun'
-            satirClass ='<tr class="bugun">'
-        } else {
-            satirClass ='<tr class="tr">'
-            tarih = day.MiladiTarihKisaIso8601
-        }
-
-        let htmlSegment = `
-            ${satirClass}
-                <td>${tarih}</td>
-                <td>${day.Imsak}</td>
-                <td>${day.GunesDogus}</td>
-                <td>${day.Ogle}</td>
-                <td>${day.Ikindi}</td>
-                <td>${day.Aksam}</td>
-                <td>${day.Yatsi}</td>
-            </tr>
-            `;
-
-        html += htmlSegment;
-    });
-    htmlTemplateStart = `
-    <table>
-        <tr>
-        <td></td>
-        <td>İmsak</td>
-        <td>Güneş</td>
-        <td>Öğle</td>
-        <td>İkindi</td>
-        <td>Akşam</td>
-        <td>Yatsı</td>
-        </tr>
-    `
-    htmlTemplateEnd = `</table>`
-    let container = document.querySelector('.aylikTablo');
-    container.innerHTML = htmlTemplateStart+html+htmlTemplateEnd;
-}
-
-renderData();
