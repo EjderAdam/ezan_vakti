@@ -33,6 +33,11 @@
         .grbg {
             background-color: rgba(76, 149, 108, 0.555);
         }
+        .kalan {
+            border: 3px;
+            border-style: ridge;
+            border-color: blue;
+        }
     </style>
 </head>
 
@@ -67,33 +72,33 @@
     </header>
     <div class="aylık">
         <table>
-            <tr>
+            <tr id="row1">
                 <td class="grbg">İmsak</td>
                 <td class="grbg" id="imsak">00:00</td>
             </tr>
-            <tr>
+            <tr id="row2">
                 <td>Güneş</td>
                 <td id="gunes">00:00</td>
             </tr>
-            <tr>
+            <tr id="row3">
                 <td class="grbg">Öğle</td>
                 <td class="grbg" id="ogle">00:00</td>
             </tr>
-            <tr>
+            <tr id="row4">
                 <td>İkindi</td>
                 <td id="ikindi">00:00</td>
             </tr>
-            <tr>
+            <tr id="row5">
                 <td class="grbg">Akşam</td>
                 <td class="grbg" id="aksam">00:00</td>
             </tr>
-            <tr>
+            <tr id="row6">
                 <td>Yatsı</td>
                 <td id="yatsi">00:00</td>
             </tr>
-            <tr>
-                <td class="grbg">Kalan</td>
-                <td class="grbg" id="kalan">00:00</td>
+            <tr id="row7">
+                <td class="grbg kalan">Kalan</td>
+                <td class="grbg kalan" id="kalan" >00:00</td>
             </tr>
         </table>
     </div>
@@ -102,12 +107,12 @@
     </footer>
     <script src="script.js"></script>
     <script>
-
+        var kalanBg = "blue"
         async function renderData() {
             let days = await getData2(9716);
             let tarih = '';
             var isTomorrow = false
-            var imsak, gunes, ogle, ikindi, aksam, yatsi, imsakTomorrow,imsakTomorrowAsDate
+            var imsak, gunes, ogle, ikindi, aksam, yatsi, imsakTomorrow, imsakTomorrowAsDate
 
             days.forEach(day => {
                 let otherDate = new Date(day.MiladiTarihUzunIso8601);
@@ -128,35 +133,44 @@
                 } else if (isTomorrow) {
                     isTomorrow = false
                     imsakTomorrow = strToDate(day.Imsak)
-                    
+
                     imsakTomorrowAsDate = imsakTomorrow + (3600 * 1000 * 24)
                 }
             });
-            var countDownDate = strToDate(imsak)
-
+            var countDownDate = 0
             function siradaki() {
                 var now = new Date().getTime();
                 if (strToDate(imsak) > now) {
                     countDownDate = strToDate(imsak)
+                    document.getElementById("row1").style.backgroundColor = kalanBg;
                 } else if (strToDate(sabah) > now) {
                     countDownDate = strToDate(sabah)
+                    document.getElementById("row2").style.backgroundColor = kalanBg;
                 } else if (strToDate(oglen) > now) {
                     countDownDate = strToDate(oglen)
+                    document.getElementById("row3").style.backgroundColor = kalanBg;
                 } else if (strToDate(ikindi) > now) {
                     countDownDate = strToDate(ikindi)
+                    document.getElementById("row4").style.backgroundColor = kalanBg;
                 } else if (strToDate(aksam) > now) {
                     countDownDate = strToDate(aksam)
+                    document.getElementById("row5").style.backgroundColor = kalanBg;
                 } else if (strToDate(yatsi) > now) {
                     countDownDate = strToDate(yatsi)
+                    document.getElementById("row6").style.backgroundColor = kalanBg;
                 } else if (imsakTomorrowAsDate > now) {
                     countDownDate = imsakTomorrowAsDate
+                    document.getElementById("row7").style.backgroundColor = kalanBg;
+
                 }
 
             }
 
             var x = setInterval(function () {
+                if (countDownDate == 0) {
+                    siradaki()
+                }
                 var now = new Date().getTime();
-
                 var distance = countDownDate - now;
                 if (distance < 0) {
                     siradaki()
