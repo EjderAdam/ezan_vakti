@@ -44,6 +44,7 @@
 <body class="bg1" onload="renderData()">
     </header>
     <script src="script.js"></script>
+    <script src="sehirler.js"></script>
     <input type="checkbox" id="menu-toggle">
     <div class="container">
         <div class="header">
@@ -80,8 +81,21 @@
         Namaz Vakitleri
     </p>
     <div class="aylikTablo"></div>
-    <footer>
-        <p>Copyright @2022 Tüm Hakları Saklıdır</p>
+
+    <footer class="bossayfafooter">
+        <div id="footer">
+            <ul id="footer">
+                <li id="footer"><a id="footer" href="">Twitter</a></li>
+                <li id="footer"><a id="footer" href="">Codepen</a></li>
+                <li id="footer"><a id="footer" href="">Email</a></li>
+                <li id="footer"><a id="footer" href="">Dribbble</a></li>
+                <li id="footer"><a id="footer" href="">Github</a></li>
+                <li id="footer">
+                    <p>👋</p>
+                </li>
+            </ul>
+        </div>
+        <p style="color: bisque;">Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
     <script>async function renderData() {
             let days = await getData2(9716);
