@@ -36,7 +36,7 @@
         .kalan {
             border: 3px;
             border-style: ridge;
-            border-color: blue;
+            border-color: rgba(1, 97, 129, 0.712);
         }
     </style>
 </head>
@@ -102,12 +102,24 @@
             </tr>
         </table>
     </div>
-    <footer>
-        <p>Copyright @2022 Tüm Hakları Saklıdır</p>
+    <footer class="bossayfafooter">
+        <div id="footer">
+            <ul id="footer">
+                <li id="footer"><a id="footer" href="">Twitter</a></li>
+                <li id="footer"><a id="footer" href="">Codepen</a></li>
+                <li id="footer"><a id="footer" href="">Email</a></li>
+                <li id="footer"><a id="footer" href="">Dribbble</a></li>
+                <li id="footer"><a id="footer" href="">Github</a></li>
+                <li id="footer">
+                    <p>👋</p>
+                </li>
+            </ul>
+        </div>
+        <p style="color: bisque;">Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
     <script src="script.js"></script>
     <script>
-        var kalanBg = "blue"
+        var kalanBg = "green"
         async function renderData() {
             let days = await getData2(9716);
             let tarih = '';
