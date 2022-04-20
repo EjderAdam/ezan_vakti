@@ -10,6 +10,7 @@
     position: absolute;
     width: 100%;
     bottom: 0px;
+    max-height: 8%;
 }
 .footer{
     background-color: rgb(0, 42, 56);
