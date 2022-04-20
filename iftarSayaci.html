@@ -11,7 +11,8 @@
         p {
             font-family: 'Courier New', monospace;
         }
-        .vakit{
+
+        .vakit {
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             margin-top: 170px;
@@ -23,7 +24,7 @@
             margin-bottom: 20px;
         }
 
-        .gerisayim{
+        .gerisayim {
             text-align: center;
             font-style: oblique;
             color: rgba(24, 78, 119, 0.726);
@@ -33,28 +34,21 @@
             border-radius: 30px;
             margin: auto;
             max-width: 60%;
-            
-
         }
     </style>
 </head>
 
 <body class="bg1">
-
     </header>
     <input type="checkbox" id="menu-toggle">
-
-
     <div class="container">
         <div class="header">
             <label class="hamburger-menu" for="menu-toggle">
                 <span></span>
             </label>
             <a href="https://ezanvakti.netlify.app/" class="logo"> BizimSite.com
-
             </a>
             <div class="actions">
-
             </div>
             <label for="menu-toggle" class="backdrop"></label>
         </div>
@@ -62,31 +56,24 @@
     <nav class="menu">
         <ul>
             <li>
-                <a href="https://ezanvakti.netlify.app/">Anasayfa</a>
+                <a href="/">Anasayfa</a>
             </li>
             <li>
-                <a href="#">Hakkımızda</a>
+                <a href="/aylik.html">Aylık namaz Vakitleri</a>
             </li>
             <li>
-                <a href="#">Çok Yakında</a>
-            </li>
-            <li>
-                <a href="#">Çok Yakında</a>
-            </li>
-            <li>
-                <a href="#">İletişim</a>
+                <a href="/iftarSayaci.html">İftar sayacı</a>
             </li>
         </ul>
     </nav>
     <p class="headerinAltindakiyazi">
         İftar Sayacı
-
     </p>
-
     <div class="aylikTablo"></div>
-<p class="vakit">İftar Vakti 
-    <br>15:18</p>
-<p class="gerisayim">15:50</p>
+    <p id="iftar" class="vakit">İftar Vakti
+        <br>15:18
+    </p>
+    <p id="kalan" class="gerisayim">15:50</p>
     <footer class="bossayfafooter">
         <div id="footer">
             <ul id="footer">
@@ -102,7 +89,52 @@
         </div>
         <p style="color: bisque;">Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
-    <script src="sehirler.js"></script>
+    <script src="script.js"></script>
+    <script>
+        async function renderData() {
+            let days = await getData2(9716);
+            var isTomorrow = false
+            var aksam, aksamTomorrow
+            days.forEach(day => {
+                let otherDate = new Date(day.MiladiTarihUzunIso8601);
+                if (isDateToday(otherDate)) {
+                    aksam = day.Aksam
+                    isTomorrow = true
+                } else if (isTomorrow) {
+                    isTomorrow = false
+                    aksamTomorrow = strToDate(day.Aksam)
+                    aksamTomorrow = aksamTomorrow + (3600 * 1000 * 24)
+                }
+            });
+            var countDownDate = 0
+            document.getElementById("iftar").innerHTML =`İftar Vakti
+        <br>`+aksam
+            function siradaki() {
+                var now = new Date().getTime();
+                if (strToDate(aksam) > now) {
+                    countDownDate = strToDate(aksam)
+                } else if (imsakTomorrowAsDate > now) {
+                    countDownDate = aksamTomorrow
+                }
+            }
+            var x = setInterval(function () {
+                if (countDownDate == 0) {
+                    siradaki()
+                }
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                if (distance < 0) {
+                    siradaki()
+                }
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("kalan").innerHTML = hours + ":"
+                    + minutes + ":" + seconds;
+            }, 1000);
+        } renderData()
+    </script>
+
 </body>
 
 </html>
