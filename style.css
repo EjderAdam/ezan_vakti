@@ -4,6 +4,7 @@
 
 .bossayfafooter{
     background-color: rgb(0, 42, 56);
+    display: flex;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 10px;
