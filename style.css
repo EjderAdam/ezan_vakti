@@ -7,14 +7,14 @@
     text-align: center;
     padding-top: 15px;
     padding-bottom: 10px;
-    position: absolute;
     width: 100%;
     bottom: 0px;
 }
 
 @media (min-height	: 676px) {
     .bossayfafooter {
-        position: none;
+        position: absolute;
+
 
     }
 }
