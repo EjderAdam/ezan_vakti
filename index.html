@@ -41,7 +41,7 @@
     </style>
 </head>
 
-<body class="bg1" onload="renderData()">
+<body class="bg1" onload="checkCookie()">
     <input type="checkbox" id="menu-toggle">
     <div class="container">
         <div class="header">
@@ -105,6 +105,7 @@
             </tr>
         </table>
     </div>
+    <div id="noCookieAlert"></div>
     <footer class="bossayfafooter">
         <div id="footer">
             <ul id="footer">
@@ -122,8 +123,10 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        async function renderData() {
-            let days = await getData2(9716);
+        async function renderData(nation) {
+            console.log("nation :"+nation)
+            let days = await getData2(nation);
+            console.log("days :"+days)
             let tarih = '';
             var isTomorrow = false
             var imsak, gunes, ogle, ikindi, aksam, yatsi, imsakTomorrow, imsakTomorrowAsDate

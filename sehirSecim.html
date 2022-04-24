@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şehir seçiniz</title>
+</head>
+<body>
+    <div id="ulkeSecim"></div>
+    <div id="sehirSecim"></div>
+    <div id="ilceSecim"></div>
+    <div id="submitButton"></div>
+    <script src="script.js"></script>
+    <script>
+        async function getUlkeler() {
+            var html = `<option>Seçiniz</option>
+            <option value="2">TÜRKİYE</option>
+            `
+            var step = 0
+            var code = 0
+            var sehirler = await sehirApi(step,code)
+            sehirler.forEach(sehir => {
+                var htmlSegment = `
+                <option value="${sehir.UlkeID}">${sehir.UlkeAdi}</option>`
+                html += htmlSegment
+            });
+            htmlTemplateStart ='<select name="Ülke" onchange="getSehirler(this.value)">'
+            htmlTemplateEnd = '</select>'
+            let container = document.getElementById('ulkeSecim');
+            container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
+        }
+        getUlkeler();
+        async function getSehirler(sehirCode) {
+            var html = ''
+            if (sehirCode==2) {
+                html = `<option>Seçiniz</option>
+                <option value="539">İSTANBUL</option>`
+            } 
+            var step = 1
+            var sehirler = await sehirApi(step,sehirCode)
+            sehirler.forEach(sehir => {
+                var htmlSegment = `
+                <option value="${sehir.SehirID}">${sehir.SehirAdi}</option>`
+                html += htmlSegment
+            });
+            htmlTemplateStart ='<select name="Ülke" onchange="getIlceler(this.value)">'
+            htmlTemplateEnd = '</select>'
+            let container = document.getElementById('sehirSecim');
+            container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
+        }
+        async function getIlceler(ilceCode) {
+            console.log("helo")
+            var html = ''
+            var step = 2
+            var sehirler = await sehirApi(step,ilceCode)
+            sehirler.forEach(sehir => {
+                var htmlSegment = `
+                <option value="${sehir.IlceID}">${sehir.IlceAdi}</option>`
+                html += htmlSegment
+            });
+            htmlTemplateStart ='<select name="Ülke" onchange="addSubmitButton(this)">'
+            htmlTemplateEnd = '</select>'
+            let container = document.getElementById('ilceSecim');
+            container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
+        }
+        function addSubmitButton(this1) {
+            let container = document.getElementById('submitButton');
+            let text = sel.options[sel.selectedIndex].text
+            container.innerHTML = `
+            <button onclick="saveRegion(${this1.region},${this1.text})">Kaydet</button>
+            `;
+
+        }
+    </script>
+</body>
+</html>
