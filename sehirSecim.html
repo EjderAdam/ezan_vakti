@@ -65,8 +65,9 @@
             container.innerHTML = htmlTemplateStart + html + htmlTemplateEnd;
         }
         function addSubmitButton(this1) {
+            console.log("sorum yo")
             let container = document.getElementById('submitButton');
-            let text = sel.options[sel.selectedIndex].text
+            let text = this1.options[this1.selectedIndex].text
             container.innerHTML = `
             <button onclick="saveRegion(${this1.region},${this1.text})">Kaydet</button>
             `;
