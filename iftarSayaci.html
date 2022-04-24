@@ -38,7 +38,7 @@
     </style>
 </head>
 
-<body class="bg1">
+<body class="bg1" onload="checkCookie()">
     </header>
     <input type="checkbox" id="menu-toggle">
     <div class="container">
@@ -74,6 +74,7 @@
         <br>15:18
     </p>
     <p id="kalan" class="gerisayim">15:50</p>
+    <div id="noCookieAlert"></div>
     <footer class="bossayfafooter">
         <div id="footer">
             <ul id="footer">
@@ -113,7 +114,7 @@
                 var now = new Date().getTime();
                 if (strToDate(aksam) > now) {
                     countDownDate = strToDate(aksam)
-                } else if (imsakTomorrowAsDate > now) {
+                } else if (aksamTomorrow > now) {
                     countDownDate = aksamTomorrow
                 }
             }
@@ -132,7 +133,7 @@
                 document.getElementById("kalan").innerHTML = hours + ":"
                     + minutes + ":" + seconds;
             }, 1000);
-        } renderData()
+        }
     </script>
 
 </body>
