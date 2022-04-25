@@ -13,6 +13,7 @@
             background-color: darkgreen;
             color: azure;
         }
+
         table {
             margin: auto;
             padding-top: 10px;
@@ -20,6 +21,7 @@
             max-width: 670px;
             font-family: 'Courier New', Courier, monospace;
             border-radius: 10px;
+            margin-bottom: 25px;
 
         }
 
@@ -30,9 +32,11 @@
             width: 150px;
 
         }
+
         .grbg {
             background-color: rgba(76, 149, 108, 0.555);
         }
+
         .kalan {
             border: 3px;
             border-style: ridge;
@@ -101,11 +105,11 @@
             </tr>
             <tr id="row7">
                 <td class="grbg kalan">Kalan</td>
-                <td class="grbg kalan" id="kalan" >00:00</td>
+                <td class="grbg kalan" id="kalan">00:00</td>
             </tr>
         </table>
     </div>
-    <div id="noCookieAlert"></div>
+    <div class="sehirSecim" id="noCookieAlert"></div>
     <footer class="bossayfafooter">
         <div id="footer">
             <ul id="footer">
@@ -124,9 +128,9 @@
     <script src="script.js"></script>
     <script>
         async function renderData(nation) {
-            console.log("nation :"+nation)
+            console.log("nation :" + nation)
             let days = await getData2(nation);
-            console.log("days :"+days)
+            console.log("days :" + days)
             let tarih = '';
             var isTomorrow = false
             var imsak, gunes, ogle, ikindi, aksam, yatsi, imsakTomorrow, imsakTomorrowAsDate
