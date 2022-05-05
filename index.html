@@ -13,7 +13,6 @@
             background-color: darkgreen;
             color: azure;
         }
-
         table {
             margin: auto;
             padding-top: 10px;
@@ -21,7 +20,6 @@
             max-width: 670px;
             font-family: 'Courier New', Courier, monospace;
             border-radius: 10px;
-            margin-bottom: 25px;
 
         }
 
@@ -32,11 +30,9 @@
             width: 150px;
 
         }
-
         .grbg {
             background-color: rgba(76, 149, 108, 0.555);
         }
-
         .kalan {
             border: 3px;
             border-style: ridge;
@@ -45,7 +41,7 @@
     </style>
 </head>
 
-<body class="bg1" onload="checkCookie()">
+<body class="bg1" onload="renderData()">
     <input type="checkbox" id="menu-toggle">
     <div class="container">
         <div class="header">
@@ -105,16 +101,17 @@
             </tr>
             <tr id="row7">
                 <td class="grbg kalan">Kalan</td>
-                <td class="grbg kalan" id="kalan">00:00</td>
+                <td class="grbg kalan" id="kalan" >00:00</td>
             </tr>
         </table>
     </div>
-    <div class="sehirSecim" id="noCookieAlert"></div>
     <footer class="bossayfafooter">
         <div id="footer">
             <ul id="footer">
+                <li id="footer"><a id="footer" href="">Twitter</a></li>
+                <li id="footer"><a id="footer" href="">Codepen</a></li>
                 <li id="footer"><a id="footer" href="">Email</a></li>
-                <li id="footer"><a style="color: yellow;" id="footer" href="">Bağış Yap</a></li>
+                <li id="footer"><a id="footer" href="">Dribbble</a></li>
                 <li id="footer"><a id="footer" href="">Github</a></li>
                 <li id="footer">
                     <p>👋</p>
@@ -125,10 +122,8 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        async function renderData(nation) {
-            console.log("nation :" + nation)
-            let days = await getData2(nation);
-            console.log("days :" + days)
+        async function renderData() {
+            let days = await getData2(9716);
             let tarih = '';
             var isTomorrow = false
             var imsak, gunes, ogle, ikindi, aksam, yatsi, imsakTomorrow, imsakTomorrowAsDate

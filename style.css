@@ -1,12 +1,3 @@
-.bagıs{
-    color: aqua;
-}
-.sehirSecim {
-    width: 10%;
-    height: 10%;
-    background-color: #000;
-}
-
 .bg1 {
     background-image: url("https://www.w3schools.com/css/paper.gif");
 }
@@ -204,7 +195,6 @@ body {
     padding: 0 20px;
     position: fixed;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .container .actions {
