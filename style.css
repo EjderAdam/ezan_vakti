@@ -2,6 +2,10 @@
     background-image: url("https://www.w3schools.com/css/paper.gif");
 }
 
+.link:hover {
+    cursor: pointer;
+}
+
 .bossayfafooter {
     background-color: rgb(0, 42, 56);
     text-align: center;
