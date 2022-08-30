@@ -21,7 +21,7 @@ function strToDate(str) {
 }
 async function getData2(locationCode) {
 
-    let url = "apiData.json" // Test json url i
+    let url = "https://ezanvakti.herokuapp.com/vakitler/"+locationCode // Test json url i
     try {
         let res = await fetch(url);
         return await res.json();
