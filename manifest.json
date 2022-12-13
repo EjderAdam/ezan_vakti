@@ -13,7 +13,8 @@
     },
     {
       "src": "https://ezanvakti.netlify.app/logo512.png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ],
   "lang": "tr"
