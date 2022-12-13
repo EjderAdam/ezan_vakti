@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "com.ebreka.ezanvakti.pwa",
+                     "sha256_cert_fingerprints": ["3C:9D:6B:E2:86:08:C2:B3:9C:D6:14:C4:13:FE:B5:5C:A6:AB:22:5F:2B:AD:11:83:AA:8F:F9:9B:81:2D:DD:BC"] }
+      }
+]
