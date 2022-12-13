@@ -1,0 +1,15 @@
+{
+  "name": "Ezan Vakitleri",
+  "short_name": "Ezan Vakitleri",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "https://ezanvakti.netlify.app/",
+  "icons": [
+        {
+            "src": "https://ezanvakti.netlify.app/logo.png",
+            "sizes": "500x500"
+        }
+    ]
+}
