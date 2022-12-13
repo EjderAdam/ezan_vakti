@@ -1,21 +1,29 @@
 {
-  "name": "Ezan Vakitleri",
-  "short_name": "Ezan Vakitleri",
-  "theme_color": "#494f56",
-  "background_color": "#494f56",
-  "display": "standalone",
-  "scope": "/",
-  "start_url": "https://ezanvakti.netlify.app/",
-  "icons": [
-    {
-      "src": "https://ezanvakti.netlify.app/logo.png",
-      "sizes": "500x500"
-    },
-    {
-      "src": "https://ezanvakti.netlify.app/logo512.png",
-      "sizes": "512x512",
-      "purpose": "any"
-    }
-  ],
-  "lang": "tr"
-}
+    "name": "Ezan Vakitleri",
+    "short_name": "Ezan Vakitleri",
+    "theme_color": "#494f56",
+    "background_color": "#494f56",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "https://ezanvakti.netlify.app/",
+    "icons": [
+      {
+        "src": "https://ezanvakti.netlify.app/logo.png",
+        "sizes": "500x500"
+      },
+      {
+        "src": "https://ezanvakti.netlify.app/logo512.png",
+        "sizes": "512x512",
+        "purpose": "any"
+      }
+    ],
+    "lang": "tr",
+    "description": "Ezan vakitleri",
+    "orientation": "portrait",
+    "display_override": [
+      "standalone"
+    ],
+    "categories": [
+      "productivity"
+    ]
+  }
