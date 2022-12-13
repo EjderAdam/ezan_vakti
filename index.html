@@ -131,6 +131,11 @@
         </div>
         <p style="color: bisque;">Copyright @2022 Tüm Hakları Saklıdır</p>
     </footer>
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+          navigator.serviceWorker.register('sw.js')
+        }
+    </script>
     <script src="script.js"></script>
     <script>
         async function renderData() {
